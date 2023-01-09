@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+
+
+
+
+  <div class="container ">
+    <h1>{{ annonce.title }}</h1>
+    <div class="card">
+        <img src="https://picsum.photos/1000/500" class="card-img-top" alt="Accroche HTML">
+        <div class="card-body">
+            <h2 class="card-title"></h2>
+            <h3 class="card-subtitle">{{ annonce.description }}</h3>
+            <p class="card-subtitle">{{ annonce.price }} €</p>
+            <p class="card-subtitle">{{ annonce.categorie.title }}</p>
+            <p class="card-subtitle">Par: {{ annonce.user.email }}</p>
+
+            <a href="/" class="btn btn-primary">retour</a>
+
+            {% if app.user and annonce.user.id == app.user.id %}
+                <a href="{{ path('edit_annonce', { id: annonce.id }) }}" class="btn btn-success">Modifier</a>
+                <a href="{{ path('delete_annonce', { id: annonce.id }) }}"  class="btn btn-danger">Supprimer</a>
+            {% endif %} 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+{% for message in app.flashes('message') %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class='d-flex justify-content-center row-cols-md-1 g-4'>
+  <div class="container">
+    <div class="card-columns">
+     {% for annonce in annoncesAll %}
+    
+      <div class="card">
+        <img src="https://picsum.photos/400/200" class="card-img-top" alt="" style="width: 100%; height: auto;">
+        <div class="card-body">
+            <h5 class="card-title"> {{annonce.title}} </h5>
+            <p class="card-text"> {{ annonce.description }} </p>
+            <p> {{ annonce.price }} </p>
+            <a href="{{path('annonce_single', {id: annonce.id}) }}" class="btn btn-primary">Voir l'annonce</a>
+        </div>
+          <div class="card-footer row">
+            <small class="text-muted col">Categorie: {{ annonce.categorie.title }}</small>
+            <small class="text-muted col text-right">{{ annonce.getCreatedAt()|date("m/d/Y") }}</small>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
